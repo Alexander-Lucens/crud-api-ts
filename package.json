@@ -1,0 +1,34 @@
+{
+  "name": "crud-api-ts",
+  "version": "1.0.0",
+  "description": "Simple CRUD + REST API writen on ts",
+  "main": "dist/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexander-Lucens/crud-api-ts.git"
+  },
+  "keywords": [
+    "crud-api-ts"
+  ],
+  "author": "@Alexander-Lucens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexander-Lucens/crud-api-ts/issues"
+  },
+  "homepage": "https://github.com/Alexander-Lucens/crud-api-ts#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "nodemon": "^3.1.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
