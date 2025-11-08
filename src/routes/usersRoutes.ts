@@ -1,7 +1,6 @@
 import { MiniExpressRouter } from "../utils/helper/miniRouter.js";
 import * as userController from "../controllers/usersControllers.js";
 
-
 const router = new MiniExpressRouter();
 
 router.get('/', userController.getUsers);

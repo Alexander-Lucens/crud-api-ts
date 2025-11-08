@@ -8,4 +8,4 @@ const app = new MiniExpress();
 
 app.use('/api/users', userRouter);
 
-export default app;
+export default app.requestListener;

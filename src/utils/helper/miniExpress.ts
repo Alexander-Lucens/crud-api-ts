@@ -15,7 +15,7 @@ interface Route {
 export class MiniExpress {
 	private routes: Route[] = [];
 
-	private requestListener: http.RequestListener = async (req, res) => {
+	public requestListener: http.RequestListener = async (req, res) => {
 		const { method, url } = req;
 		for (const route of this.routes) {
 			const match = url!.match(route.path);
