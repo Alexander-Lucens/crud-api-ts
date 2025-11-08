@@ -4,9 +4,13 @@
   "description": "Simple CRUD + REST API writen on ts",
   "main": "dist/server.js",
   "type": "module",
+  "engines": {
+    "node": "24.10.0",
+    "npm": ">=10.9.0"
+  },
   "scripts": {
     "build": "tsc",
-    "start:dev": "nodemon src/server.ts",
+    "start:dev": "nodemon --exec \"node --loader ts-node/esm src/server.ts\"",
     "start:prod": "npm run build && node dist/server.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },

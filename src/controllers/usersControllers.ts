@@ -1,8 +1,8 @@
 import http from "node:http";
-import * as db from "../db/localMemoryDB.ts";
+import * as db from "../db/localMemoryDB.js";
 import { validate } from "uuid";
-import { User } from "../models/userModel.ts";
-import { badRequest, notFound, writeResponse } from "../utils/writeResponse.ts";
+import { User } from "../models/userModel.js";
+import { badRequest, notFound, writeResponse } from "../utils/writeResponse.js";
 
 const isValidUserData = (data: any): boolean => {
     const { username, age, hobbies } = data;
@@ -20,7 +20,7 @@ export const createUser = async (req: http.IncomingMessage, res: http.ServerResp
 
 export const createUserFromBody = async (req: http.IncomingMessage, res: http.ServerResponse) => {
 	// @ts-ignore
-	const userData: User = req.body;
+	const userData: Omit<User, "id"> = req.body;
 	if (!isValidUserData(userData)) {
         badRequest(res, "Request body does not contain required fields");
         return;
@@ -76,7 +76,7 @@ export const putUserByIdFromParams = async (req: http.IncomingMessage, res: http
 	putUserById(req, res, id, userData);
 }
 
-export const patchUserById = async (req: http.IncomingMessage, res: http.ServerResponse, id: string, userData: Omit<User, "id">) => {
+export const patchUserById = async (req: http.IncomingMessage, res: http.ServerResponse, id: string, userData: Partial<User>) => {
 	if (!validate(id)) {
 		badRequest(res, "Invalid userId");
 		return;
@@ -89,11 +89,7 @@ export const patchUserByIdFromParams = async (req: http.IncomingMessage, res: ht
 	// @ts-ignore
 	const { id } = req.params;
 	// @ts-ignore
-	const userData: User = req.body;
-	if (!isValidUserData(userData)) {
-        badRequest(res, "Request body does not contain required fields");
-        return;
-    }
+	const userData: Partial<User> = req.body;
 	patchUserById(req, res, id, userData);
 }
 /** ******************************************************************************************************************/

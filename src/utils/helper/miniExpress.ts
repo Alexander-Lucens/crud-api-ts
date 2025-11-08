@@ -1,7 +1,7 @@
 import http from "node:http";
-import { bodyParser } from './bodyParser.ts';
-import { notFound, writeResponse } from "../writeResponse.ts";
-import { MiniExpressRouter } from "./miniRouter.ts";
+import { bodyParser } from './bodyParser.js';
+import { notFound, writeResponse } from "../writeResponse.js";
+import { MiniExpressRouter } from "./miniRouter.js";
 
 type RequestHandler = (req: http.IncomingMessage, res: http.ServerResponse, params?: any) => void;
 
@@ -25,11 +25,11 @@ export class MiniExpress {
 					return acc;
 				}, {} as any);
 				try {
-					if (method === "POST" || method === "PUT") {
+					// @ts-ignore
+					req.params = params;
+					if (method === "POST" || method === "PUT" || method === "PATCH") {
 						// @ts-ignore
 						req.body = await bodyParser(req);
-						// @ts-ignore
-						req.params = params; 
 					}
 					return route.handler(req, res);
 				} catch (error) {
@@ -72,6 +72,10 @@ export class MiniExpress {
 		this.addRoute("PUT", path, handler);
 	};
 
+	public patch(path: string, handler: RequestHandler) {
+		this.addRoute("PATCH", path, handler);
+	};
+
 	public delete(path: string, handler: RequestHandler) {
 		this.addRoute("DELETE", path, handler);
 	};
@@ -80,7 +84,7 @@ export class MiniExpress {
 		for (const route of router.routes) {
 			const basePath = path.endsWith('/') ? path.slice(0, -1) : path;
 			const routePath = route.path === '/' ? '' : route.path;
-			const fullPath = basePath + route.path;
+			const fullPath = basePath + routePath;
 			this.addRoute(route.method, fullPath, route.handler);
 		}
 	}

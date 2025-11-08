@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import { MiniExpress } from "./utils/helper/miniExpress.ts";
-import userRouter from './routes/usersRoutes.ts';
+import { MiniExpress } from "./utils/helper/miniExpress.js";
+import userRouter from './routes/usersRoutes.js';
 
 dotenv.config({ path: './.env' });
 

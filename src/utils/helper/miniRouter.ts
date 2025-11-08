@@ -23,6 +23,10 @@ export class MiniExpressRouter {
 		this.routes.push({ method: "PUT", path, handler });
 	};
 
+	public patch(path: string, handler: RequestHandler) {
+		this.routes.push({ method: "PATCH", path, handler });
+	};
+
 	public delete(path: string, handler: RequestHandler) {
 		this.routes.push({ method: "DELETE", path, handler });
 	};

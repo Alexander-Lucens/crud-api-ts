@@ -1,4 +1,4 @@
-import { User } from "../models/userModel.ts";
+import { User } from "../models/userModel.js";
 import { v4 as uuidv4 } from "uuid";
 
 let users: User[] = [];
@@ -27,7 +27,7 @@ export const putUserById = async (id: string, data: Omit<User, 'id'>): Promise<U
 	return user;
 };
 
-export const patchUserById = async (id: string, data: Omit<User, 'id'>): Promise<User | undefined> => {
+export const patchUserById = async (id: string, data: Partial<User>): Promise<User | undefined> => {
 	let user = users.find((user) => user.id === id);
 	if (!user)
 		return undefined;

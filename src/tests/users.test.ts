@@ -1,6 +1,6 @@
 import request from 'supertest';
-import app from '../src/app.js';
-import * as db from '../src/db/localMemoryDB.js';
+import app from '../app.js';
+import * as db from '../db/localMemoryDB.js';
 
 beforeEach(async () => {
 	await db.deleteAllUsers();
