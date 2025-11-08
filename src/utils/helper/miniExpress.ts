@@ -1,7 +1,7 @@
 import http from "node:http";
-import { bodyParser } from './bodyParser.js';
-import { notFound, writeResponse } from "../writeResponse.js";
-import { MiniExpressRouter } from "./miniRouter.js";
+import { bodyParser } from './bodyParser.ts';
+import { notFound, writeResponse } from "../writeResponse.ts";
+import { MiniExpressRouter } from "./miniRouter.ts";
 
 type RequestHandler = (req: http.IncomingMessage, res: http.ServerResponse, params?: any) => void;
 

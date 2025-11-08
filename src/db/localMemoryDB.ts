@@ -1,5 +1,5 @@
-import { User } from "../models/userModel.js";
-import { v4 } from "uuid";
+import { User } from "../models/userModel.ts";
+import { v4 as uuidv4 } from "uuid";
 
 let users: User[] = [];
 
@@ -12,7 +12,7 @@ export const getUserById = async (id: string): Promise<User | undefined> => {
 };
 
 export const createUser = async (data: Omit<User, 'id'>): Promise<User> => {
-	const newUser = { id: v4(), ...data };
+	const newUser = { id: uuidv4(), ...data };
 	users.push(newUser);
 	return newUser;
 };

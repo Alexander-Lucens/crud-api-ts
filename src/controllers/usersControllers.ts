@@ -1,8 +1,8 @@
 import http from "node:http";
-import * as db from "../db/localMemoryDB.js";
+import * as db from "../db/localMemoryDB.ts";
 import { validate } from "uuid";
-import { User } from "../models/userModel.js";
-import { badRequest, notFound, writeResponse } from "../utils/writeResponse.js";
+import { User } from "../models/userModel.ts";
+import { badRequest, notFound, writeResponse } from "../utils/writeResponse.ts";
 
 const isValidUserData = (data: any): boolean => {
     const { username, age, hobbies } = data;

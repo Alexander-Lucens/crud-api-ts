@@ -1,5 +1,5 @@
-import { MiniExpressRouter } from "../utils/helper/miniRouter.js";
-import * as userController from "../controllers/usersControllers.js";
+import { MiniExpressRouter } from "../utils/helper/miniRouter.ts";
+import * as userController from "../controllers/usersControllers.ts";
 
 
 const router = new MiniExpressRouter();
