@@ -1,15 +1,13 @@
 import dotenv from 'dotenv';
-import { MiniExpress } from "./utils/miniExpress.js";
-import * as userController from "./controllers/usersControllers.js";
-
+import { MiniExpress } from "./utils/helper/miniExpress.js";
+import userRouter from './routes/usersRoutes.js';
 
 dotenv.config({ path: './.env' });
 const PORT = Number(process.env.PORT) || 1234;
 
 const app = new MiniExpress();
 
-app.get('/api/users', userController.getUsers);
-
+app.use('/api/users', userRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}`);

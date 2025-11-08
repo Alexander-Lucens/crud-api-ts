@@ -1,6 +1,6 @@
 import http from "node:http";
 import { bodyParser } from './bodyParser.js';
-import { notFound, writeResponse } from "./writeResponse.js";
+import { notFound, writeResponse } from "../writeResponse.js";
 import { MiniExpressRouter } from "./miniRouter.js";
 
 type RequestHandler = (req: http.IncomingMessage, res: http.ServerResponse, params?: any) => void;
@@ -27,9 +27,11 @@ export class MiniExpress {
 				try {
 					if (method === "POST" || method === "PUT") {
 						// @ts-ignore
-						req.body = await bodyParser(req); 
+						req.body = await bodyParser(req);
+						// @ts-ignore
+						req.params = params; 
 					}
-					return route.handler(req, res, params);
+					return route.handler(req, res);
 				} catch (error) {
 					writeResponse(res, 500, { message: "Internal Server Error" });
 					return ;
@@ -76,7 +78,9 @@ export class MiniExpress {
 
 	public use(path: string, router: MiniExpressRouter) {
 		for (const route of router.routes) {
-			const fullPath = path + route.path;
+			const basePath = path.endsWith('/') ? path.slice(0, -1) : path;
+			const routePath = route.path === '/' ? '' : route.path;
+			const fullPath = basePath + route.path;
 			this.addRoute(route.method, fullPath, route.handler);
 		}
 	}
