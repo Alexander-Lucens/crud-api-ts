@@ -1,7 +1,9 @@
 import request from 'supertest';
-import requestListener from '../app.js';
-import * as db from '../db/localMemoryDB.js';
+import app from '../app.js';
+import * as db from "../db/localMemoryDB.js";
 import { User } from '../models/userModel.js';
+
+const requestListener = app.requestListener;
 
 beforeAll(async () => {
 	await db.deleteAllUsers();

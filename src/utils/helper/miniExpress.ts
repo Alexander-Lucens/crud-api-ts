@@ -62,22 +62,27 @@ export class MiniExpress {
 
 	public get(path: string, handler: RequestHandler) {
 		this.addRoute("GET", path, handler);
+		return this;
 	};
 
 	public post(path: string, handler: RequestHandler) {
 		this.addRoute("POST", path, handler);
+		return this;
 	};
 
 	public put(path: string, handler: RequestHandler) {
 		this.addRoute("PUT", path, handler);
+		return this;
 	};
 
 	public patch(path: string, handler: RequestHandler) {
 		this.addRoute("PATCH", path, handler);
+		return this;
 	};
 
 	public delete(path: string, handler: RequestHandler) {
 		this.addRoute("DELETE", path, handler);
+		return this;
 	};
 
 	public use(path: string, router: MiniExpressRouter) {
@@ -87,7 +92,8 @@ export class MiniExpress {
 			const fullPath = basePath + routePath;
 			this.addRoute(route.method, fullPath, route.handler);
 		}
-	}
+		return this;
+	};
 
 	public listen(port: number, callback: () => void) {
 		const server = http.createServer(this.requestListener);

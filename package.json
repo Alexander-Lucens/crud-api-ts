@@ -10,8 +10,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "start:dev": "nodemon --exec \"node --loader ts-node/esm src/server.ts\"",
+    "start:dev": "npm run build && nodemon dist/server.js",
     "start:prod": "npm run build && node dist/server.js",
+    "start:multi": "node --loader ts-node/esm --no-warnings src/cluster.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "repository": {
@@ -29,9 +30,6 @@
   "homepage": "https://github.com/Alexander-Lucens/crud-api-ts#readme",
   "dependencies": {
     "dotenv": "^17.2.3",
-    "nodemon": "^3.1.10",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.9.3",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
@@ -41,6 +39,8 @@
     "jest": "^30.2.0",
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.5",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "nodemon": "^3.1.10"
   }
 }

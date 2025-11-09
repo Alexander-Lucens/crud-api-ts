@@ -1,12 +1,12 @@
-import requestListener from "./app.js";
-import http from 'node:http';
+import app from "./app.js";
 import dotenv from 'dotenv';
 
-dotenv.config({ path: './.env' });
+dotenv.config({ 
+	path: './.env',
+	quiet: true    
+});
 const PORT = Number(process.env.PORT) || 1234;
 
-const server = http.createServer(requestListener);
-
-server.listen(PORT, () => {
+app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}`);
 });

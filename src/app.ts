@@ -2,10 +2,12 @@ import dotenv from 'dotenv';
 import { MiniExpress } from "./utils/helper/miniExpress.js";
 import userRouter from './routes/usersRoutes.js';
 
-dotenv.config({ path: './.env' });
-
+dotenv.config({ 
+	path: './.env',
+	quiet: true    
+});
 const app = new MiniExpress();
 
 app.use('/api/users', userRouter);
 
-export default app.requestListener;
+export default app;
